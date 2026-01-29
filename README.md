@@ -22,6 +22,3 @@ A small AutoHotkey script that adds enhanced mouse button shortcuts for quick co
 2. Double-click `AutoHotkey_mouse_copy_paste__delete_back.ahk`
 3. The script will run in the system tray
 4. Use mouse buttons to trigger enhanced shortcuts
-
-## 📂 File Structure
-
