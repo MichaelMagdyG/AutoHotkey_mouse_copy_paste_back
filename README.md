@@ -1,0 +1,1 @@
+# AutoHotkey_mouse_copy_paste_back
