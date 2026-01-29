@@ -1,3 +1,4 @@
+#Requires AutoHotkey v1.1
 ; -----------------------------
 ; Mouse Actions Script
 ; Back, Copy, Delete, Paste
@@ -47,3 +48,4 @@ return
 RemoveTooltip:
     ToolTip
 return
+
