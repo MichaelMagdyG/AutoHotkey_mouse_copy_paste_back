@@ -1,51 +1,68 @@
 #Requires AutoHotkey v1.1
-; -----------------------------
-; Mouse Actions Script
-; Back, Copy, Delete, Paste
-; -----------------------------
+#SingleInstance Force
+SendMode Input
+SetBatchLines -1
 
-; Middle click actions
+; -----------------------------
+; Settings
+; -----------------------------
+HoldTime := 0.4
+TooltipTime := 100
+
+; -----------------------------
+; Middle Click
+; -----------------------------
 MButton::
-    KeyWait, MButton, T0.4
-    if ErrorLevel
+    if IsHeld("MButton")
     {
-        ; Held: Delete
-        Send, {Del}
-        ToolTip, Deleted!
-        SetTimer, RemoveTooltip, -100
+        SendInput, {Del}
+        ShowTip("Deleted!")
     }
     else
     {
-        ; Tap: Back
-        Send, !{Left}
-        ToolTip, Back!
-        SetTimer, RemoveTooltip, -100
+        SendInput, !{Left}
+        ShowTip("Back!")
     }
 return
 
-; Left click held → Copy
+; -----------------------------
+; Left Click Held → Copy
+; -----------------------------
 ~LButton::
-    KeyWait, LButton, T0.4
-    if ErrorLevel
+    if IsHeld("LButton")
     {
-        Send, ^c
-        ToolTip, Copied!
-        SetTimer, RemoveTooltip, -100
+        SendInput, ^c
+        ShowTip("Copied!")
     }
 return
 
-; Right click held → Paste
+; -----------------------------
+; Right Click Held → Paste
+; -----------------------------
 ~RButton::
-    KeyWait, RButton, T0.4
-    if ErrorLevel
+    if IsHeld("RButton")
     {
-        Send, ^v
-        ToolTip, Pasted!
-        SetTimer, RemoveTooltip, -100
+        SendInput, ^v
+        ShowTip("Pasted!")
     }
 return
+
+; -----------------------------
+; Functions
+; -----------------------------
+
+IsHeld(key) {
+    global HoldTime
+    KeyWait, %key%, T%HoldTime%
+    return ErrorLevel
+}
+
+ShowTip(msg) {
+    global TooltipTime
+    ToolTip, %msg%
+    SetTimer, RemoveTooltip, -%TooltipTime%
+}
 
 RemoveTooltip:
     ToolTip
 return
-
