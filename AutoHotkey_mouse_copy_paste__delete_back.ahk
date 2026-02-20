@@ -43,6 +43,7 @@ return
     if IsHeld("RButton")
     {
         SendInput, ^v
+        SendInput, {Esc}
         ShowTip("Pasted!")
     }
 return
